@@ -51,7 +51,7 @@
         "new Promise((${1:resolve}, ${2:reject}) => {",
         " $3 ",
         "})",
-        ".then(data => console.log(data));",
+        ".then(data => console.log(data))",
         ".catch(msg => console.error(msg));"
       ],
       "description": "Create a new Promise"
