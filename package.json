@@ -3,7 +3,7 @@
   "displayName": "JavaScript Snippets",
   "publisher": "ShivamShukla",
   "description": "This extension contains javascript code snippets for Visual Studio Code editor.",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "repository": "https://github.com/shivam-shukla-developer/Javascript-Code-Snippets-VS-Code",
   "engines": {
     "vscode": "^1.30.0"
