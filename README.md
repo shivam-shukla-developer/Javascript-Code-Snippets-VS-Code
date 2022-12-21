@@ -4,6 +4,10 @@
 
 This extension contains javascript code snippets for [Visual Studio Code](https://code.visualstudio.com/) editor.
 
+[Author - Shivam Shukla ](https://shivamshukla.online/) | 
+[Marketplace](https://marketplace.visualstudio.com/items?itemName=ShivamShukla.js-code-snippets)
+
+
 ## Snippets
 
 List of all available snippets is given below.
@@ -27,13 +31,64 @@ List of all available snippets is given below.
 | `np`    | create a promise with then and catch methods `new Promise((res, rej) => {})`       |
 | `npres` | create a promise and resolve it `Promise.resolve()`                                |
 | `nprej` | create a promise and reject it `Promise.reject()`                                  |
+| `npf`   | create a promise with try, catch and finally block                                 |
+| `npall` | Promise.all method `Promise.all()`                                                 |
+| `npany` | Promise.any method `Promise.any()`                                                 |
+| `nprace`| Promise.race method `Promise.race()`                                               |
+| `npallsettled` | Promise.all method `Promise.allsettled()`                                   |
 
 ### Array Methods
 
-| Trigger  | Content                                                                        |
-| -------- | ------------------------------------------------------------------------------ |
-| `arrmth` | create array method for - forEach, map, filter, find, every, some.             |
-| `reduce` | create array method`iterable.(forEach,map,filter,find,every,some)(item => {})` |
+| Trigger  | Content                                                                                |
+| -------- | ------------------------------------------------------------------------------         |
+| `arrmth` | create Array method for - forEach, map, filter, find, every, some.                     |
+| `arrconcat` | Array concat method `array1.concat(array2);`                                        |
+| `arrcopyWithin`| Array copyWithin method `array1.copyWithin(array2);`                             |
+| `arrentries`   | Array copyWithin method `array.entries();`                                       |
+| `arrfilter`    | Array filter method `array.filter((item, index, array) => {});`                  |
+| `arrfindIndex` | Array findIndex method `array.findIndex((item, index, array) => {});`            |
+| `arrflat`      | Array float method `array.flat();`                                               |
+| `arrflatmap`   | Array float method `array.flatMap((item, index, array) => {});`                  |
+| `arrforEach`   | Array forEach method `array.forEach((item, index, array) => {});`                |
+| `arrfrom`      | Array from method `Array.from(array, item => {});`                               |
+| `arrisArray`   | Array isArray method `Array.isArray(array);`                                     |
+| `arrincludes`  | Array includes method `array.includes(value);`                                   |
+| `arrindexOf`   | Array indexOf method `array.indexOf(value);`                                     |
+| `arrjoin`      | Array join method `array.join(string);`                                          |
+| `arrkeys`      | Array keys method `array.keys();`                                                |
+| `arrmap`       | Array map method `array.map(function (element, index, array) { }, thisArg);`     |
+| `arrof`        | Array of method `Array.of(element0, element1);`                                  |
+| `arrpop`       | Array pop method `array.pop();;`                                                 |
+| `arrpush`      | Array push method `array.push('');`                                              |
+| `arrreduce`    | Array reduce method `array.reduce((accumulator, currentValue, currentIndex, array) => { });`                                                                                           |
+| `arrreduceRight`    | Array reduceRight method `array.reduceRight((accumulator, currentValue, currentIndex, array) => { });`                                                                      |
+| `arrreverse`   | Array reverse method `array.reverse('');`                                        |
+| `arrshift`     | Array shift method `array.shift('');`                                            |
+| `arrslice`     | Array slice method `array.slice(begin, end);`                                    |
+| `arrsome`      | Array some method `array.some(function (element, index, array) { }, thisArg);`   |
+| `arrsort`      | Array sort method `array.sort((a, b) => { } );`                                  |
+| `arrsplice`    | Array splice method `array.splice(start, deleteCount, item1, item2, itemN);`     |
+| `arrunshift`   | Array unshift method `array.unshift(element0, element1, /* … ,*/ elementN);`     |
+
+### Object Methods
+
+| Trigger  | Content                                                                                |
+| -------- | ------------------------------------------------------------------------------         |
+| `objkeys`          | Object keys method `Object.keys(myObj)`                                      |
+| `objkeysforeach`   | Object keys metod with foreach method `Object.keys(myObj).forEach((key, index) => {})`                                                                                             |
+| `objvalues`        | Object values method `Object.values(myObj)`                                  |
+| `objvaluesforeach` | Object values metod with foreach method `Object.values(myObj).forEach((key, index) => {})`                                                                                                |
+| `objentries`       | Object entries method `Object.entries(myObj)`                                |
+| `objentriesforeach`| Object entries metod with foreach method `Object.entries(myObj).forEach((key, index) => {})`                                                                                                |
+| `objassign`        | Object assign method `Object.assign(target, source)`                         |
+| `objfreeze`        | Object freeze method `Object.freeze(obj)`                                    |
+| `objis`            | Object is method `Object.is(value1, value2)`                                 |
+| `objtoString`      | Object toString method `obj.toString()`                                      |
+| `objprototype.toString` | Object prototype toString method `obj.prototype.toString=function(){};` |
+| `objhasOwnProperty`| Object hasOwnProperty method `obj.hasOwnProperty(property);`                 |
+| `objgetOwnPropertyNames`| Object getOwnPropertyNames method `Object.getOwnPropertyNames(obj);`    |
+| `objgetOwnPropertyDescriptor`| Object getOwnPropertyDescriptor method `Object.getOwnPropertyDescriptor(obj, property);`                                                   | 
+
 
 ### Conditional Operator
 

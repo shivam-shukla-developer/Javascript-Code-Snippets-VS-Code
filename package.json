@@ -1,12 +1,12 @@
 {
   "name": "js-code-snippets",
-  "displayName": "JavaScript Code Snippets",
+  "displayName": "JavaScript Snippets",
   "publisher": "ShivamShukla",
   "description": "This extension contains javascript code snippets for Visual Studio Code editor.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": "https://github.com/shivam-shukla-developer/Javascript-Code-Snippets-VS-Code",
   "engines": {
-    "vscode": "^1.74.0"
+    "vscode": "^1.30.0"
   },
   "icon": "images/icon.png",
   "categories": [
@@ -20,6 +20,18 @@
       {
         "language": "javascript",
         "path": "./src/snippets/snippets.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./src/snippets/snippets.json"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "./src/snippets/snippets.json"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./src/snippets/snippets.json"
       }
     ]
   },
@@ -28,7 +40,7 @@
     "pretest": "npm run lint"
   },
   "devDependencies": {
-    "@types/vscode": "^1.74.0",
+    "@types/vscode": "^1.30.0",
     "@types/glob": "^8.0.0",
     "@types/mocha": "^10.0.1",
     "@types/node": "16.x",

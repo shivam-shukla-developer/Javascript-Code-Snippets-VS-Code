@@ -1,420 +1,805 @@
 {
-    "named function": {
-      "prefix": "nfn",
-      "body": ["function ${1:functionName}($2){", "  $3", "}"],
-      "description": "Named Function"
-    },
-    "anonymous function": {
-      "prefix": "fn",
-      "body": ["function($1){", "  $2", "}"],
-      "description": "Anonymous function"
-    },
-    "arrow function": {
-      "prefix": "afn",
-      "body": ["const ${1:functionName} = ($2) => {", "  $3", "}"],
-      "description": "Arrow function"
-    },
-    "Function Apply": {
-      "prefix": "apply",
-      "body": ["${1:functionName}.apply(${2:this}, ${3:arguments})"],
-      "description": "Function Apply"
-    },
-    "Function Call": {
-      "prefix": "call",
-      "body": ["${1:fn}.call(${2:this}, ${3:arguments})"],
-      "description": "Function Call"
-    },
-    "Function Bind": {
-      "prefix": "bind",
-      "body": ["${1:fn}.bind(${2:this}, ${3:arguments})"],
-      "description": "Function Bind"
-    },
-    "IIFE": {
-      "prefix": "iife",
-      "body": ["(function ($1) {", "    $2", "})();"],
-      "description": "IIFE"
-    },
-    "IIFE with result": {
-      "prefix": "iifer",
-      "body": [
-        "const ${1:result} = (function ($1) {",
-        "    $2",
-        "  return ;",
-        "})();",
-        "console.log(${1:result});"
-      ],
-      "description": "IIFE with result"
-    },
-    "new promise": {
-      "prefix": "np",
-      "body": [
-        "new Promise((${1:resolve}, ${2:reject}) => {",
-        " $3 ",
-        "})",
-        ".then(data => console.log(data))",
-        ".catch(msg => console.error(msg));"
-      ],
-      "description": "Create a new Promise"
-    },
-    "new promise directly resolve": {
-      "prefix": "npres",
-      "body": [
-        "Promise.resolve().then(data => console.log(data));"      
-      ],
-      "description": "Create a new promise and resolves it directly"
-    },
-    "new promise directly reject": {
-      "prefix": "nprej",
-      "body": [
-        "Promise.reject().catch(msg => console.error(msg));"      
-      ],
-      "description": "Create a new promise and reject it directly"
-    },
-    "Array Method": {
-      "prefix": "arrmth",
-      "body": [
-        "${1:iterable}.${2|forEach,map,filter,find,every,some|}((${3:item}) => {",
-        "  $4",
-        "})"
-      ],
-      "description": "Array Method"
-    },
-    "Reduce": {
-      "prefix": "reduce",
-      "body": ["${1:iterable}.reduce((${2:acc}, ${3:item}) => {", "  ${5}", "}${4:, initial})", ""],
-      "description": "Array Method Reduce"
-    },
-    "Basic If Statement": {
-      "prefix": "i",
-      "body": ["if(${1:condition}) {", "  $2", "}"],
-      "description": "If Statement"
-    },
-    "If Else Statement": {
-      "prefix": "ife",
-      "body": ["if(${1:condition}) {", "  $2", "} else {", "  $3", "}"],
-      "description": "If else statement"
-    },
-    "Else-If": {
-      "prefix": "ei",
-      "body": ["else if (${1:condition}) {", "  $2", "}"],
-      "description": "Else-If Statement"
-    },
-    "switch statment": {
-      "prefix": "swt",
-      "body": [
-        "switch(${1:expression}){",
-        "  case ${2:condition}: $3",
-        "                       break;",
-        "  case ${4:condition}: $5",
-        "                       break;",
-        "  case ${6:condition}: $7",
-        "                       break;",
-        "  default: $8;",
-        "}"
-      ],
-      "description": "Switch Statment"
-    },
-    "For In Loop": {
-      "prefix": "fin",
-      "body": ["for (const ${1:key} in ${2:source}) {", "  $3", "}"],
-      "description": "For In Loop"
-    },
-    "For Of Loop": {
-      "prefix": "fof",
-      "body": ["for (const ${1:key} of ${2:source}) {", "  $3", "}"],
-      "description": "For Of Loop"
-    },
-    "While Loop": {
-      "prefix": "wl",
-      "body": ["while (${1:condition}) {", "  $2", "}"],
-      "description": "While Loop"
-    },
-    "fetch with catch": {
-      "prefix": "fetchc",
-      "body": [
-        "fetch('${1:url}')",
-        "  .then(response => {",
-        "    if (response.status === 200) {",
-        "      return response.json();",
-        "    } else {",
-        "      throw new Error('Something went wrong on api server!');",
-        "    }",
-        "  })",
-        "  .then(data => {",
-        "    console.debug(data);",
-        "  }).catch(error => {",
-        "    console.error(error);",
-        "  });"
-      ],
-      "description": "Fetch with Catch"
-    },
-    "Fetch Request": {
-      "prefix": "fetch",
-      "body": [
-        "fetch('${1:url}')",
-        "  .then(res => res.json())",
-        "  .then(data => console.log(data));"
-      ],
-      "description": "Fetch Request"
-    },
-    "Async/Await Fetch": {
-      "prefix": "asyncfetch",
-      "body": [
-        "const request = async ($1) => {",
-        "    const response = await fetch('${2:url}');",
-        "    const data = await response.json();",
-        "    console.log(data);",
-        "}"
-      ],
-      "description": "Fetch Async/Await"
-    },
-    "Async/Await Fetch with catch": {
-      "prefix": "asyncfetchc",
-      "body": [
-        "const request = async ($1) => {",
-        "  const response = await fetch('${2:url}');",
-        "  if(response.status === 200){",
-        "    const data = await response.json();",
-        "    console.log(data);",
-        "  }",
-        "  else{",
-        "    console.log(\"error\");",
-        "  }",
-        "}"
-      ],
-      "description": "Async/Await Fetch with catch"
-    },
-    "try and catch": {
-      "prefix": "tc",
-      "body": ["try {", "  $1", "}catch (err){", "  $2", "}"],
-      "description": "try and catch"
-    },
-    "try, catch and finally": {
-      "prefix": "tcf",
-      "body": ["try {", "  $1", "}catch (err){", "  $2", "}", "finally{", "  $3", "}"],
-      "description": "try, catch and finally"
-    },
-    "Axios Request": {
-      "prefix": "ax",
-      "body": [
-        "axios.${1|get,post,put,delete|}('${2:url}')",
-        "  .then(res => console.log(res.data))",
-        "  .catch(err => console.log(err));"
-      ],
-      "description": "Axios Request"
-    },
-    "Async/Await Axios": {
-      "prefix": "asyncax",
-      "body": [
-        "async function ${1:functionName}() {",
-        "  try {",
-        "    const response = await axios.${2|get,post,put,delete|}('${3:url}');",
-        "    const data = await response.json();",
-        "    return data;",
-        "  } catch (error) {",
-        "    console.log(error);",
-        "  }",
-        "}"
-      ],
-      "description": "Async/Await Axios"
-    },
-    "Set TimeOut": {
-      "prefix": "st",
-      "body": ["setTimeout(() => {", "  $2", "}, ${1:delay})"],
-      "description": "Set TimeOut"
-    },
-    "Set Interval": {
-      "prefix": "si",
-      "body": ["setInterval(() => {\n\t$2\n}, ${1:intervalInms});"],
-      "description": "Set Interval"
-    },
-    "Set Immediate": {
-      "prefix": "sim",
-      "body": ["setImmediate(() => {", "  $1", "})"],
-      "description": "Set Immediate"
-    },
-    "Set Timeout with variable": {
-      "prefix": "stv",
-      "body": [
-        "const ${1:timer} = setTimeout(() => {",
-        "                    $3",
-        "                   }, ${2:delay})"
-      ],
-      "description": "Set Timeout with variable"
-    },
-    "Clear Timeout": {
-      "prefix": "ct",
-      "body": ["clearTimeout(${1:variableName});"],
-      "description": "Clear Timeout"
-    },
-    "Set Interval with variable": {
-      "prefix": "siv",
-      "body": [
-        "const ${1:variableName} = setInterval(() => {",
-        "                            $3",
-        "                          },${2:intervalTime})"
-      ],
-      "description": "Set Interval with variable"
-    },
-    "Clear Interval": {
-      "prefix": "ci",
-      "body": ["clearInterval(${1:variableName})"],
-      "description": "Clear Interval"
-    },
-    "Array Destructure": {
-      "prefix": "ad",
-      "body": ["const [${1:element1}, ${2:element2}] = ${3:array}"],
-      "description": "Array Destructure"
-    },
-    "Object Destructure": {
-      "prefix": "od",
-      "body": ["const {${1:property1}, ${1:property2}} = ${3:object}"],
-      "description": "Object Destructure"
-    },
-    "export ": {
-      "prefix": "e",
-      "body": ["export ${1:member}"],
-      "description": "export $1"
-    },
-    "export default": {
-      "prefix": "ed",
-      "body": ["export default ${1:member}"],
-      "description": "export default"
-    },
-    "export default fn": {
-      "prefix": "edf",
-      "body": ["export default function ${1:functionName} (${2:arguments}) {\n\t$3\n}"],
-      "description": "export default fn"
-    },
-    "export const": {
-      "prefix": "ec",
-      "body": ["export const ${1:member} = ${2:value}"],
-      "description": "export const"
-    },
-    "import": {
-      "prefix": "im",
-      "body": ["import ${1:*} from '${2:module}'"],
-      "description": "import"
-    },
-    "import as": {
-      "prefix": "ima",
-      "body": ["import ${1:*} as ${2:name} from '${3:module}'"],
-      "description": "import as"
-    },
-    "import with destructure": {
-      "prefix": "imd",
-      "body": ["import { $1 } from '${2:module}'"],
-      "description": "import with destructure"
-    },
-    "require": {
-      "prefix": "rq",
-      "body": ["const ${1:module} = require(${1:module});"],
-      "description": "require"
-    },
-    "module export": {
-      "prefix": "me",
-      "body": ["module.exports = {};"],
-      "description": "module export"
-    },
-    "class": {
-      "prefix": "cls",
-      "body": ["class ${1:name} {", "  constructor(${2:arguments}) {", "    $3", "  }", "}"],
-      "description": "class"
-    },
-    "class with extends": {
-      "prefix": "clsx",
-      "body": [
-        "class ${1:name} extends ${2:base} {",
-        "  constructor(${3:arguments}) {",
-        "    super(${3:arguments});",
-        "  }",
-        "}"
-      ],
-      "description": "class with extends"
-    },
-    "console log": {
-      "prefix": "clog",
-      "body": ["console.log(${1:obj});"],
-      "description": "Display the logging information"
-    },
-    "console log key-value pair": {
-      "prefix": "cl",
-      "body": ["console.log('${1:obj}:',${2:obj});"],
-      "description": "Display the logging information in key value pair"
-    },
-    "console clear": {
-      "prefix": "cclr",
-      "body": ["console.clear();"],
-      "description": "Clear the console"
-    },
-    "console warn": {
-      "prefix": "cw",
-      "body": ["console.warn(${1:obj});"],
-      "description": "Outputs a warning message"
-    },
-    "console table": {
-      "prefix": "ctb",
-      "body": ["console.table(${1:obj});"],
-      "description": "Displays tabular data as a table"
-    },
-    "console assert": {
-      "prefix": "cass",
-      "body": ["console.assert(${1:expression}, ${2:obj});"],
-      "description": "Writes an error message to the console if the expression is false"
-    },
-    "console count": {
-      "prefix": "cc",
-      "body": ["console.count(${1:label});"],
-      "description": "Keep count of how many times your code is read "
-    },
-    "console countReset": {
-      "prefix": "ccr",
-      "body": ["console.countReset(${1:label});"],
-      "description": "Resets the counter"
-    },
-    "console dir": {
-      "prefix": "cdir",
-      "body": ["console.dir(${1:obj}, {colors: ${2:true}, depth: ${3:null}});"],
-      "description": "Display all the properties of an object"
-    },
-    "console error": {
-      "prefix": "cerr",
-      "body": ["console.error(${1:obj});"],
-      "description": "Outputs an error message"
-    },
-    "console group": {
-      "prefix": "cgrp",
-      "body": ["console.group(${1:label});"],
-      "description": "Creates a new inline group in the Web Console"
-    },
-    "console groupEnd": {
-      "prefix": "cend",
-      "body": ["console.groupEnd();"],
-      "description": "Exits the current inline group in the Web Console"
-    },
-    "console info": {
-      "prefix": "cin",
-      "body": ["console.info(${1:obj})"],
-      "description": "Outputs an informational message with a icon"
-    },
-    "console time": {
-      "prefix": "ctym",
-      "body": ["console.time(${1:label});"],
-      "description": "Starts a timer you can use to track how long an operation takes"
-    },
-    "console timeEnd": {
-      "prefix": "cte",
-      "body": ["console.timeEnd(${1:label});"],
-      "description": "Stops a timer that was previously started"
-    },
-    "console timeLog": {
-      "prefix": "ctg",
-      "body": ["console.timeLog(${1:label});"],
-      "description": "Logs the current value of a timer that was previously started"
-    },
-    "console trace": {
-      "prefix": "ctr",
-      "body": ["console.trace(${1:label});"],
-      "description": "Display the trace which represents how the code ended up at a certain point"
-    }
+  "named function": {
+    "prefix": "nfn",
+    "body": [
+      "function ${1:functionName}($2){",
+      "  $3",
+      "}"
+    ],
+    "description": "Named Function"
+  },
+  "anonymous function": {
+    "prefix": "fn",
+    "body": [
+      "function($1){",
+      "  $2",
+      "}"
+    ],
+    "description": "Anonymous function"
+  },
+  "arrow function": {
+    "prefix": "afn",
+    "body": [
+      "const ${1:functionName} = ($2) => {",
+      "  $3",
+      "}"
+    ],
+    "description": "Arrow function"
+  },
+  "Function Apply": {
+    "prefix": "apply",
+    "body": [
+      "${1:functionName}.apply(${2:this}, ${3:arguments})"
+    ],
+    "description": "Function Apply"
+  },
+  "Function Call": {
+    "prefix": "call",
+    "body": [
+      "${1:fn}.call(${2:this}, ${3:arguments})"
+    ],
+    "description": "Function Call"
+  },
+  "Function Bind": {
+    "prefix": "bind",
+    "body": [
+      "${1:fn}.bind(${2:this}, ${3:arguments})"
+    ],
+    "description": "Function Bind"
+  },
+  "IIFE": {
+    "prefix": "iife",
+    "body": [
+      "(function ($1) {",
+      "    $2",
+      "})();"
+    ],
+    "description": "IIFE"
+  },
+  "IIFE with result": {
+    "prefix": "iifer",
+    "body": [
+      "const ${1:result} = (function ($1) {",
+      "    $2",
+      "  return ;",
+      "})();",
+      "console.log(${1:result});"
+    ],
+    "description": "IIFE with result"
+  },
+  "new promise": {
+    "prefix": "np",
+    "body": [
+      "new Promise((${1:resolve}, ${2:reject}) => {",
+      " $3 ",
+      "})",
+      ".then(data => console.log(data))",
+      ".catch(msg => console.error(msg));"
+    ],
+    "description": "Create a new Promise with then and catch block."
+  },
+  "new promise directly resolve": {
+    "prefix": "npres",
+    "body": [
+      "Promise.resolve().then(data => console.log(data));"
+    ],
+    "description": "Create a new promise and resolves it directly"
+  },
+  "new promise directly reject": {
+    "prefix": "nprej",
+    "body": [
+      "Promise.reject().catch(msg => console.error(msg));"
+    ],
+    "description": "Create a new promise and reject it directly"
+  },
+  "Promise": {
+    "prefix": "npf",
+    "body": "new Promise((resolve, reject) => {})\r\n    .then(() => {})\r\n    .catch(error => {\r\n        console.log(error);\r\n    })\r\n    .finally(() => {});\r\n",
+    "description": "Promise object to represent the final completion (or failure) and results of an asynchronous operation."
+  },
+  "Promise.all": {
+    "prefix": "npall",
+    "body": "Promise.all(${1:promise1}, ${2:promise2})\r\n    .then(res => {\r\n        console.log(res, 'res');\r\n    })\r\n    .catch(err => {\r\n        console.log(err, 'err');\r\n    })\r\n    .finally(() => {});\r\n",
+    "description": "Promise.all () method to receive a promise ITERABLE type (Note: Array, Map, Set belongs to the ITERABLE type of ES6), and only returns a promise instance.The result is an array. This Promise's resolve callback execution is ended in the resolution callback of all input promise, or when the input ITERABLE is not available. Its reject back execution is, as long as any of the input promise rejectionPROMISE, which is adjusted or entered, will immediately throw an error, and Reject is the first error message to throw"
+  },
+  "Promise.allSettled": {
+    "prefix": "npallsettled",
+    "body": "Promise.allsettled(${1:promise1}, ${2:promise2}).then(results => results.forEach(result => console.log(result.status)));\r\n",
+    "description": "This promise.allSettled () method returns a promise after all given Promise has fulfilled or rejected, with an object array. Each object represents the corresponding promise results. When you have multiple multiple multiple multiple results. When you have multiple multiple multiple multiple. You have multiple multiple multiple results. When you have multiple multiple multi -multipleWhen the asynchronous task that is not dependent on each other is successfully completed, or you always want to know the results of each promise, you usually use it. "
+  },
+  "Promise.any": {
+    "prefix": "npany",
+    "body": "Promise.any(${1:promise1}, ${2:promise2}).then(result => console.log(result));\r\n",
+    "description": "Promise.any () receives a Promise. As long as one of the Promise is successful, returns the successful Promise. If there is no Promise in the iterative object (that is, all promises fails/rejected/refusal), Return a failed example of Promise and Aggregateerror type. It is a subclass of ERROR, which is used to gather a single error. In essence, this method is the opposite to promise.all (). "
+  },
+  "Promise.race": {
+    "prefix": "nprace",
+    "body": "Promise.race(${1:promise1}, ${2:promise2}).then(value => {\r\n    console.log(value);\r\n});\r\n",
+    "description": "Promise.race (Iterable) method Return a promise. Once a promise in the iterator is solved or rejected, the returned promise will be solved or rejected."
+  },
+  "Array Method": {
+    "prefix": "arrmth",
+    "body": [
+      "${1:iterable}.${2|forEach,map,filter,find,every,some|}((${3:item}) => {",
+      "  $4",
+      "})"
+    ],
+    "description": "Array Method"
+  },
+  "Array.concat": {
+    "prefix": "arrconcat",
+    "body": "${1:array}.concat(${2:array2});\r\n",
+    "description": "Concat () method is used to merge two or more arrays. This method will not change the existing array, but return a new array."
+  },
+  "Array.copyWithin": {
+    "prefix": "arrcopyWithin",
+    "body": "${1:array}.copyWithin(${2:array2});\r\n",
+    "description": "Copywithin () method to copy a part of the array shallowly to another position in the same array, and return it, it will not change the length of the original array."
+  },
+  "Array.entries": {
+    "prefix": "arrentries",
+    "body": "const iterator = ${1:array}.entries();\r\nconsole.log(iterator.next().value);\r\n",
+    "description": "Entries () method Return a new Arry Iterator object, which contains the key/value pair of each index in the array."
+  },
+  "Array.every": {
+    "prefix": "arrevery",
+    "body": "${1:array}.every((item, index, array) => {});\r\n",
+    "description": "Every () method tests whether all elements in an array can pass the test of a specified function. It returns a Boolean value."
+  },
+  "Array.filter": {
+    "prefix": "arrfilter",
+    "body": "${1:array}.filter((item, index, array) => {});\r\n",
+    "description": "Filter () method to create a new array, which includes all elements that are implemented by the function implemented by the function."
+  },
+  "Array.find": {
+    "prefix": "arrfind",
+    "body": "const findResult = ${1:array}.find((item, index, array) => {});\r\n",
+    "description": "Find () method Return the value of the first element of the first element that meets the test function in the array. Otherwise, return Undefined."
+  },
+  "Array.findIndex": {
+    "prefix": "arrfindIndex",
+    "body": "const findIndex = ${1:array}.findIndex((item, index, array) => {});\r\n",
+    "description": "Findindex () method Returns the index of the first element of the test function provided in the array. If not found the corresponding element, return -1."
+  },
+  "Array.flat": {
+    "prefix": "arrflat",
+    "body": "${1:array}.flat();\r\n",
+    "description": "Flat () method will be traversed in an array according to a specified depth recursive traversal, and the elements in all elements and the elements in the sub -array of the traversal are returned into a new array."
+  },
+  "Array.flatMap": {
+    "prefix": "arrflatMap",
+    "body": "${1:array}.flatMap((item, index, array) => {});\r\n",
+    "description": "Flatmap () method first uses the mapping function to map each element, and then compresses the result into a new array. It is almost the same as Flat with a depth value of 1, but Flatmap is usually merged into a method of a method.The efficiency is slightly higher. "
+  },
+  "Array.forEach": {
+    "prefix": "arrforEach",
+    "body": "${1:array}.forEach((item, index, array) => {});\r\n",
+    "description": "Foreach () method executes a given function once a given function on each element of the array."
+  },
+  "Array.from": {
+    "prefix": "arrfrom",
+    "body": "Array.from(${1:array}, item => {});\r\n",
+    "description": "Array.from () method creates a new, shallow copy of the array of array or iterative objects."
+  },
+  "Array.isArray": {
+    "prefix": "arrisArray",
+    "body": "Array.isArray(${1:array});\r\n",
+    "description": "Array.isarray () determine whether the transmitted value is an array."
+  },
+  "Array.includes": {
+    "prefix": "arrincludes",
+    "body": "${1:array}.includes(${2:value});\r\n",
+    "description": "Includes () method determines whether the entry of the array contains a certain value, and return True or False accordingly"
+  },
+  "Array.indexOf": {
+    "prefix": "arrindexOf",
+    "body": "${1:array}.indexOf(${2:value});\r\n",
+    "description": "Indexof () method returns the first index of the given element in the array. If it does not exist, return to -1"
+  },
+  "Array.join": {
+    "prefix": "arrjoin",
+    "body": "${1:array}.join($2);\r\n",
+    "description": "Join () method Create and return a new string by connecting all elements in the array (or object similar to an array) (with a comma or specified separators).Return to the project without using a separator "
+  },
+  "Array.keys": {
+    "prefix": "arrkeys",
+    "body": "${1:array}.keys()\r\n",
+    "description": "Keys () method returns an Array Iterator object containing each index key in the array."
+  },
+  "Array.lastIndexOf": {
+    "prefix": "arrlastIndexOf",
+    "body": "${1:array}.lastIndexOf(${2:searchElement}, ${3:fromIndex});\r\n",
+    "description": "LastIndexof () method returns the last index of the specified element (that is, the valid JavaScript value or variable) in the array.start."
+  },
+  "Array.map": {
+    "prefix": "arrmap",
+    "body": "${1:array}.map((item, index, array) => {\r\n    console.log(item, 'item');\r\n    console.log(index, 'index');\r\n    console.log(array, 'array');\r\n}, this);\r\n",
+    "description": "Map () method create a new array. As a result, each element in the array is the return value after calling the function provided once."
+  },
+  "Array.of": {
+    "prefix": "arrof",
+    "body": "Array.of(1, 2, 3);\r\n",
+    "description": "Array.of () method Create a new array instance with variable quantitative parameters without considering the number or type of parameter."
+  },
+  "Array.pop": {
+    "prefix": "arrpop",
+    "body": "${1:array}.pop();\r\n",
+    "description": "Pop () method deletes the last element from the array and returns the value of the element. This method changes the length of the array."
+  },
+  "Array.push": {
+    "prefix": "arrpush",
+    "body": "${1:array}.push('$2');\r\n",
+    "description": "Push () method adds one or more elements to the end of the array, and returns the new length of the array"
+  },
+  "Array.reduce": {
+    "prefix": "arrreduce",
+    "body": "${1:array}.reduce((pre, cur, index, array) => {\r\n    return pre;\r\n}, []);\r\n",
+    "description": "Reduce () method executes a Reducer function (execution of the promotion) of each element in the array, and the results are summarized to a single return value"
+  },
+  "Array.reduceRight": {
+    "prefix": "arrreduceRight",
+    "body": "${1:array}.reduceRight((acc, cur, idx, arr) => {\r\n    return acc;\r\n}, []);\r\n",
+    "description": "Reducericht () method accepts a function as an accumulator and each value (from right to left) of the array (from right to left) to a single value"
+  },
+  "Array.reverse": {
+    "prefix": "arrreverse",
+    "body": "${1:array}.reverse();\r\n",
+    "description": "Reverse () method reverses the position of the elements in the array and returns the array. The first element of the array will become the last one, and the last element of the array will become the first.Own array. "
+  },
+  "Array.shift": {
+    "prefix": "arrshift",
+    "body": "${1:array}.shift();\r\n",
+    "description": "Shift () method deletes the first element from the array and returns the value of the element. This method changes the length of the array."
+  },
+  "Array.slice": {
+    "prefix": "arrslice",
+    "body": "${1:array}.slice(${2:begin}, ${2:end});\r\n",
+    "description": "Slice () method returns a new array object. This object is a shallow copy of the original array (including Begin, excluding END) determined by Begin and End. The original array will not be changed."
+  },
+  "Array.some": {
+    "prefix": "arrsome",
+    "body": "${1:array}.some((item, index, array) => {}, thisArg);\r\n",
+    "description": "SOME () method test whether there are at least one element in the array passed the function test provided. It returns a value of a BOOLEAN type."
+  },
+  "Array.sort": {
+    "prefix": "arrsort",
+    "body": "${1:array}.sort((a, b) => a - b);\r\n",
+    "description": "Sort () method sort the elements of the array with the in situ algorithm and return the array."
+  },
+  "Array.splice": {
+    "prefix": "arrsplice",
+    "body": "${1:array}.splice(${2:start}, ${3:deleteCount}, ${4:item});\r\n",
+    "description": "Splice () method By deleting or replacing existing elements or adding new elements in place to modify the array, and returns the modified content in the form of an array. This method will change the original array."
+  },
+  "Array.unshift": {
+    "prefix": "arrunshift",
+    "body": "${1:array}.unshift($2);\r\n",
+    "description": "UNSHIFT () method adds one or more elements to the beginning of the array, and returns the new length of the array (this method modify the original array)."
+  },
+  "Basic If Statement": {
+    "prefix": "i",
+    "body": [
+      "if(${1:condition}) {",
+      "  $2",
+      "}"
+    ],
+    "description": "If Statement"
+  },
+  "If Else Statement": {
+    "prefix": "ife",
+    "body": [
+      "if(${1:condition}) {",
+      "  $2",
+      "} else {",
+      "  $3",
+      "}"
+    ],
+    "description": "If else statement"
+  },
+  "Else-If": {
+    "prefix": "ei",
+    "body": [
+      "else if (${1:condition}) {",
+      "  $2",
+      "}"
+    ],
+    "description": "Else-If Statement"
+  },
+  "switch statment": {
+    "prefix": "swt",
+    "body": [
+      "switch(${1:expression}){",
+      "  case ${2:condition}: $3",
+      "                       break;",
+      "  case ${4:condition}: $5",
+      "                       break;",
+      "  case ${6:condition}: $7",
+      "                       break;",
+      "  default: $8;",
+      "}"
+    ],
+    "description": "Switch Statment"
+  },
+  "For In Loop": {
+    "prefix": "fin",
+    "body": [
+      "for (const ${1:key} in ${2:source}) {",
+      "  $3",
+      "}"
+    ],
+    "description": "For In Loop"
+  },
+  "For Of Loop": {
+    "prefix": "fof",
+    "body": [
+      "for (const ${1:key} of ${2:source}) {",
+      "  $3",
+      "}"
+    ],
+    "description": "For Of Loop"
+  },
+  "While Loop": {
+    "prefix": "wl",
+    "body": [
+      "while (${1:condition}) {",
+      "  $2",
+      "}"
+    ],
+    "description": "While Loop"
+  },
+  "fetch with catch": {
+    "prefix": "fetchc",
+    "body": [
+      "fetch('${1:url}')",
+      "  .then(response => {",
+      "    if (response.status === 200) {",
+      "      return response.json();",
+      "    } else {",
+      "      throw new Error('Something went wrong on api server!');",
+      "    }",
+      "  })",
+      "  .then(data => {",
+      "    console.debug(data);",
+      "  }).catch(error => {",
+      "    console.error(error);",
+      "  });"
+    ],
+    "description": "Fetch with Catch"
+  },
+  "Fetch Request": {
+    "prefix": "fetch",
+    "body": [
+      "fetch('${1:url}')",
+      "  .then(res => res.json())",
+      "  .then(data => console.log(data));"
+    ],
+    "description": "Fetch Request"
+  },
+  "Async/Await Fetch": {
+    "prefix": "asyncfetch",
+    "body": [
+      "const request = async ($1) => {",
+      "    const response = await fetch('${2:url}');",
+      "    const data = await response.json();",
+      "    console.log(data);",
+      "}"
+    ],
+    "description": "Fetch Async/Await"
+  },
+  "Async/Await Fetch with catch": {
+    "prefix": "asyncfetchc",
+    "body": [
+      "const request = async ($1) => {",
+      "  const response = await fetch('${2:url}');",
+      "  if(response.status === 200){",
+      "    const data = await response.json();",
+      "    console.log(data);",
+      "  }",
+      "  else{",
+      "    console.log(\"error\");",
+      "  }",
+      "}"
+    ],
+    "description": "Async/Await Fetch with catch"
+  },
+  "try and catch": {
+    "prefix": "tc",
+    "body": [
+      "try {",
+      "  $1",
+      "}catch (err){",
+      "  $2",
+      "}"
+    ],
+    "description": "try and catch"
+  },
+  "try, catch and finally": {
+    "prefix": "tcf",
+    "body": [
+      "try {",
+      "  $1",
+      "}catch (err){",
+      "  $2",
+      "}",
+      "finally{",
+      "  $3",
+      "}"
+    ],
+    "description": "try, catch and finally"
+  },
+  "Axios Request": {
+    "prefix": "ax",
+    "body": [
+      "axios.${1|get,post,put,delete|}('${2:url}')",
+      "  .then(res => console.log(res.data))",
+      "  .catch(err => console.log(err));"
+    ],
+    "description": "Axios Request"
+  },
+  "Async/Await Axios": {
+    "prefix": "asyncax",
+    "body": [
+      "async function ${1:functionName}() {",
+      "  try {",
+      "    const response = await axios.${2|get,post,put,delete|}('${3:url}');",
+      "    const data = await response.json();",
+      "    return data;",
+      "  } catch (error) {",
+      "    console.log(error);",
+      "  }",
+      "}"
+    ],
+    "description": "Async/Await Axios"
+  },
+  "Set TimeOut": {
+    "prefix": "st",
+    "body": [
+      "setTimeout(() => {",
+      "  $2",
+      "}, ${1:delay})"
+    ],
+    "description": "Set TimeOut"
+  },
+  "Set Interval": {
+    "prefix": "si",
+    "body": [
+      "setInterval(() => {\n\t$2\n}, ${1:intervalInms});"
+    ],
+    "description": "Set Interval"
+  },
+  "Set Immediate": {
+    "prefix": "sim",
+    "body": [
+      "setImmediate(() => {",
+      "  $1",
+      "})"
+    ],
+    "description": "Set Immediate"
+  },
+  "Set Timeout with variable": {
+    "prefix": "stv",
+    "body": [
+      "const ${1:timer} = setTimeout(() => {",
+      "                    $3",
+      "                   }, ${2:delay})"
+    ],
+    "description": "Set Timeout with variable"
+  },
+  "Clear Timeout": {
+    "prefix": "ct",
+    "body": [
+      "clearTimeout(${1:variableName});"
+    ],
+    "description": "Clear Timeout"
+  },
+  "Set Interval with variable": {
+    "prefix": "siv",
+    "body": [
+      "const ${1:variableName} = setInterval(() => {",
+      "                            $3",
+      "                          },${2:intervalTime})"
+    ],
+    "description": "Set Interval with variable"
+  },
+  "Clear Interval": {
+    "prefix": "ci",
+    "body": [
+      "clearInterval(${1:variableName})"
+    ],
+    "description": "Clear Interval"
+  },
+  "Array Destructure": {
+    "prefix": "ad",
+    "body": [
+      "const [${1:element1}, ${2:element2}] = ${3:array}"
+    ],
+    "description": "Array Destructure"
+  },
+  "Object Destructure": {
+    "prefix": "od",
+    "body": [
+      "const {${1:property1}, ${1:property2}} = ${3:object}"
+    ],
+    "description": "Object Destructure"
+  },
+  "export ": {
+    "prefix": "e",
+    "body": [
+      "export ${1:member}"
+    ],
+    "description": "export $1"
+  },
+  "export default": {
+    "prefix": "ed",
+    "body": [
+      "export default ${1:member}"
+    ],
+    "description": "export default"
+  },
+  "export default fn": {
+    "prefix": "edf",
+    "body": [
+      "export default function ${1:functionName} (${2:arguments}) {\n\t$3\n}"
+    ],
+    "description": "export default fn"
+  },
+  "export const": {
+    "prefix": "ec",
+    "body": [
+      "export const ${1:member} = ${2:value}"
+    ],
+    "description": "export const"
+  },
+  "import": {
+    "prefix": "im",
+    "body": [
+      "import ${1:*} from '${2:module}'"
+    ],
+    "description": "import"
+  },
+  "import as": {
+    "prefix": "ima",
+    "body": [
+      "import ${1:*} as ${2:name} from '${3:module}'"
+    ],
+    "description": "import as"
+  },
+  "import with destructure": {
+    "prefix": "imd",
+    "body": [
+      "import { $1 } from '${2:module}'"
+    ],
+    "description": "import with destructure"
+  },
+  "require": {
+    "prefix": "rq",
+    "body": [
+      "const ${1:module} = require(${1:module});"
+    ],
+    "description": "require"
+  },
+  "module export": {
+    "prefix": "me",
+    "body": [
+      "module.exports = {};"
+    ],
+    "description": "module export"
+  },
+  "class": {
+    "prefix": "cls",
+    "body": [
+      "class ${1:name} {",
+      "  constructor(${2:arguments}) {",
+      "    $3",
+      "  }",
+      "}"
+    ],
+    "description": "class"
+  },
+  "class with extends": {
+    "prefix": "clsx",
+    "body": [
+      "class ${1:name} extends ${2:base} {",
+      "  constructor(${3:arguments}) {",
+      "    super(${3:arguments});",
+      "  }",
+      "}"
+    ],
+    "description": "class with extends"
+  },
+  "console log": {
+    "prefix": "clog",
+    "body": [
+      "console.log(${1:obj});"
+    ],
+    "description": "Display the logging information"
+  },
+  "console log key-value pair": {
+    "prefix": "cl",
+    "body": [
+      "console.log('${1:obj}:',${2:obj});"
+    ],
+    "description": "Display the logging information in key value pair"
+  },
+  "console clear": {
+    "prefix": "cclr",
+    "body": [
+      "console.clear();"
+    ],
+    "description": "Clear the console"
+  },
+  "console warn": {
+    "prefix": "cw",
+    "body": [
+      "console.warn(${1:obj});"
+    ],
+    "description": "Outputs a warning message"
+  },
+  "console table": {
+    "prefix": "ctb",
+    "body": [
+      "console.table(${1:obj});"
+    ],
+    "description": "Displays tabular data as a table"
+  },
+  "console assert": {
+    "prefix": "cass",
+    "body": [
+      "console.assert(${1:expression}, ${2:obj});"
+    ],
+    "description": "Writes an error message to the console if the expression is false"
+  },
+  "console count": {
+    "prefix": "cc",
+    "body": [
+      "console.count(${1:label});"
+    ],
+    "description": "Keep count of how many times your code is read "
+  },
+  "console countReset": {
+    "prefix": "ccr",
+    "body": [
+      "console.countReset(${1:label});"
+    ],
+    "description": "Resets the counter"
+  },
+  "console dir": {
+    "prefix": "cdir",
+    "body": [
+      "console.dir(${1:obj}, {colors: ${2:true}, depth: ${3:null}});"
+    ],
+    "description": "Display all the properties of an object"
+  },
+  "console error": {
+    "prefix": "cerr",
+    "body": [
+      "console.error(${1:obj});"
+    ],
+    "description": "Outputs an error message"
+  },
+  "console group": {
+    "prefix": "cgrp",
+    "body": [
+      "console.group(${1:label});"
+    ],
+    "description": "Creates a new inline group in the Web Console"
+  },
+  "console groupEnd": {
+    "prefix": "cend",
+    "body": [
+      "console.groupEnd();"
+    ],
+    "description": "Exits the current inline group in the Web Console"
+  },
+  "console info": {
+    "prefix": "cin",
+    "body": [
+      "console.info(${1:obj})"
+    ],
+    "description": "Outputs an informational message with a icon"
+  },
+  "console time": {
+    "prefix": "ctym",
+    "body": [
+      "console.time(${1:label});"
+    ],
+    "description": "Starts a timer you can use to track how long an operation takes"
+  },
+  "console timeEnd": {
+    "prefix": "cte",
+    "body": [
+      "console.timeEnd(${1:label});"
+    ],
+    "description": "Stops a timer that was previously started"
+  },
+  "console timeLog": {
+    "prefix": "ctg",
+    "body": [
+      "console.timeLog(${1:label});"
+    ],
+    "description": "Logs the current value of a timer that was previously started"
+  },
+  "console trace": {
+    "prefix": "ctr",
+    "body": [
+      "console.trace(${1:label});"
+    ],
+    "description": "Display the trace which represents how the code ended up at a certain point"
+  },
+  "Object.keys": {
+    "prefix": "objkeys",
+    "body": "Object.keys(${1:obj});\r\n",
+    "description": "Object.keys () method will return an array consisting of an enumerated attribute of a given object itself, the order of the attribute name in the array and the normal cycle of the return of the object is consistent"
+  },
+  "Object.keys.foreach": {
+    "prefix": "objkeysforeach",
+    "body": "Object.keys(${1:obj}).forEach((key, index) => {});\r\n",
+    "description": "Object.keys () method will return an array consisting of an enumerated attribute of a given object itself, the order of the attribute name in the array and the normal cycle of the return of the object is consistent"
+  },
+  "Object.values": {
+    "prefix": "objvalues",
+    "body": "Object.values(${1:obj});\r\n",
+    "description": "Object.values () method Return to all arrays of all the enumerated attribute values of the given object itself, the order of the value is the same as the order of using for ... in loop (the difference lies in the for-in loop enumeration of enumerationThe attribute in the prototype chain). "
+  },
+  "Object.values.foreach": {
+    "prefix": "objvaluesforeah",
+    "body": "Object.values(${1:obj}).forEach((value, index) => {});\r\n",
+    "description": "Object.values () method Return to all arrays of all the enumerated attribute values of the given object itself, the order of the value is the same as the order of using for ... in loop (the difference lies in the for-in loop enumeration of enumerationThe attribute in the prototype chain). "
+  },
+  "Object.entries": {
+    "prefix": "objentries",
+    "body": "Object.entries(${1:obj});\r\n",
+    "description": "The Object.entries() method returns an array of a given object's own enumerable string-keyed property key-value pairs."
+  },
+  "Object.entries.foreach": {
+    "prefix": "objentriesforeach",
+    "body": "Object.entries(${1:obj}).forEach(([key, value], index) => {});\r\n",
+    "description": "The Object.entries() method returns an array of a given object's own enumerable string-keyed property key-value pairs."
+  },
+  "Object.assign": {
+    "prefix": "objassign",
+    "body": "Object.assign(${1:target}, ${2:source});\r\n",
+    "description": "Object.assign () method is used to allocate the value of all available attachments from one or more source objects to the target object. It will return the target object."
+  },
+  "Object.freeze": {
+    "prefix": "objfreeze",
+    "body": "Object.freeze(${1:obj});\r\n",
+    "description": "Object.freeze () method can freeze an object. A frozen object can no longer be modified; if a object is frozenObjects have enumeration, configurable, writing, and cannot modify the values of existing attributes. In addition, the prototype of the object after frozen an object cannot be modified.Objects with the same parameters. "
+  },
+  "Object.is": {
+    "prefix": "objis",
+    "body": "Object.is(${1:value1}, ${2:value2});\r\n",
+    "description": "Object.is () method to determine whether the two values are the same value."
+  },
+  "Object.toString": {
+    "prefix": "objtoString",
+    "body": [
+      "${1:obj}.toString();"
+    ],
+    "description": "The toString() method returns a string representing the object"
+  },
+  "Object.prototype.toString": {
+    "prefix": "objprototype.toString",
+    "body": [
+      "${1:obj}.prototype.toString = function() {",
+      " $2 ",
+      "};"
+    ],
+    "description": "Tostring () Prototype method defines a string that indicates the object."
+  },
+  "Object.hasOwnProperty": {
+    "prefix": "objhasOwnProperty",
+    "body": "${1:object}.hasOwnProperty(${2:property});\r\n",
+    "description": "Hasownproperty () method will return a Boolean value to indicate whether the object's own attribute has a specified attribute (that is, whether there are specified keys)."
+  },
+  "Object.getOwnPropertyDescriptor": {
+    "prefix": "objgetOwnPropertyDescriptor",
+    "body": "Object.getOwnPropertyDescriptor(${1:object}, ${2:property});\r\n",
+    "description": "Object.get.getownpropertyDescriptor () method returns a descriptors corresponding to its own attributes on the specified object. (The own attribute refers to the attributes directly given the object, and there is no need to find the attribute from the original chain).)"
+  },
+  "Object.getOwnPropertyNames": {
+    "prefix": "objgetOwnPropertyNames",
+    "body": "Object.getOwnPropertyNames(${1:obj});\r\n",
+    "description": "Object.get.getownPropertynames () method Returns an array of attribute names (including non -enumerated attributes but not included in the name attributes of Symbol)."
   }
+}
